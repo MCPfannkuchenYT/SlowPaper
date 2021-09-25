@@ -46,7 +46,7 @@ out/
 # other stuff
 run/
 
-ForkTest-Server
-ForkTest-API
+SlowPaper-Server
+SlowPaper-API
 
 !gradle/wrapper/gradle-wrapper.jar

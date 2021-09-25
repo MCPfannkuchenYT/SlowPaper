@@ -5,6 +5,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "ForkTest"
+rootProject.name = "SlowPaper"
 
-include("ForkTest-API", "ForkTest-Server")
+include("SlowPaper-API", "SlowPaper-Server")
