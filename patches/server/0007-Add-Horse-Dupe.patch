@@ -1,0 +1,18 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Pfannekuchen <gamesupport@mgnet.work>
+Date: Tue, 19 Oct 2021 17:22:53 +0200
+Subject: [PATCH] Add Horse Dupe
+
+
+diff --git a/src/main/java/net/minecraft/world/entity/animal/horse/AbstractHorse.java b/src/main/java/net/minecraft/world/entity/animal/horse/AbstractHorse.java
+index 5c104bf219e5e4acb8acfb160bd92f0a0621d864..08de7f182e79e8e352957193c97541abfaf00166 100644
+--- a/src/main/java/net/minecraft/world/entity/animal/horse/AbstractHorse.java
++++ b/src/main/java/net/minecraft/world/entity/animal/horse/AbstractHorse.java
+@@ -542,6 +542,7 @@ public abstract class AbstractHorse extends Animal implements ContainerListener,
+ 
+                 if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack)) {
+                     this.spawnAtLocation(itemstack);
++                    this.spawnAtLocation(itemstack);
+                 }
+             }
+ 
