@@ -1,0 +1,19 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Pfannekuchen <gamesupport@mgnet.work>
+Date: Tue, 19 Oct 2021 17:37:03 +0200
+Subject: [PATCH] Now it works
+
+
+diff --git a/src/main/java/net/minecraft/world/entity/animal/horse/AbstractHorse.java b/src/main/java/net/minecraft/world/entity/animal/horse/AbstractHorse.java
+index 08de7f182e79e8e352957193c97541abfaf00166..96b89e7b17a833222a3392753271e23e06de45e5 100644
+--- a/src/main/java/net/minecraft/world/entity/animal/horse/AbstractHorse.java
++++ b/src/main/java/net/minecraft/world/entity/animal/horse/AbstractHorse.java
+@@ -542,7 +542,7 @@ public abstract class AbstractHorse extends Animal implements ContainerListener,
+ 
+                 if (!itemstack.isEmpty() && !EnchantmentHelper.hasVanishingCurse(itemstack)) {
+                     this.spawnAtLocation(itemstack);
+-                    this.spawnAtLocation(itemstack);
++                    this.spawnAtLocation(itemstack.copy());
+                 }
+             }
+ 
