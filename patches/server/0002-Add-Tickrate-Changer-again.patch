@@ -1,0 +1,48 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Pfannekuchen <gamesupport@mgnet.work>
+Date: Tue, 19 Oct 2021 12:48:54 +0200
+Subject: [PATCH] Add Tickrate Changer again
+
+
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index 94f37c882da8afb3a368adf0f664345ad43948d2..ddeab5d80dec3fcf75518e8d4c317111c9f3e2d7 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -196,6 +196,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+     private static final float AVERAGE_TICK_TIME_SMOOTHING = 0.8F;
+     private static final int TICK_STATS_SPAN = 100;
+     public static final int MS_PER_TICK = 50;
++    public static final float GAMESPEED = 1.0f; // For later
+     private static final int SNOOPER_UPDATE_INTERVAL = 6000;
+     private static final int OVERLOADED_THRESHOLD = 2000;
+     private static final int OVERLOADED_WARNING_INTERVAL = 15000;
+@@ -1236,11 +1237,11 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+                     long i = ((curTime = System.nanoTime()) / (1000L * 1000L)) - this.nextTickTime; // Paper
+ 
+                     if (i > 5000L && this.nextTickTime - this.lastOverloadWarning >= 30000L) { // CraftBukkit
+-                        long j = i / 50L;
++                        long j = i / MS_PER_TICK;
+ 
+                         if (this.server.getWarnOnOverload()) // CraftBukkit
+                             MinecraftServer.LOGGER.warn("Can't keep up! Is the server overloaded? Running {}ms or {} ticks behind", i, j);
+-                        this.nextTickTime += j * 50L;
++                        this.nextTickTime += j * MS_PER_TICK;
+                         this.lastOverloadWarning = this.nextTickTime;
+                     }
+ 
+@@ -1268,13 +1269,13 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+ 
+                     //MinecraftServer.currentTick = (int) (System.currentTimeMillis() / 50); // CraftBukkit // Paper - don't overwrite current tick time
+                     lastTick = curTime;
+-                    this.nextTickTime += 50L;
++                    this.nextTickTime += MS_PER_TICK;
+                     this.startMetricsRecordingTick();
+                     this.profiler.push("tick");
+                     this.tickServer(this::haveTime);
+                     this.profiler.popPush("nextTickWait");
+                     this.mayHaveDelayedTasks = true;
+-                    this.delayedTasksMaxNextTickTime = Math.max(Util.getMillis() + 50L, this.nextTickTime);
++                    this.delayedTasksMaxNextTickTime = Math.max(Util.getMillis() + MS_PER_TICK, this.nextTickTime);
+                     this.waitUntilNextTick();
+                     this.profiler.pop();
+                     this.endMetricsRecordingTick();

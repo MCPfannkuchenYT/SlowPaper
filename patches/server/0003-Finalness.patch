@@ -1,0 +1,21 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Pfannekuchen <gamesupport@mgnet.work>
+Date: Tue, 19 Oct 2021 13:07:54 +0200
+Subject: [PATCH] Finalness
+
+
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index ddeab5d80dec3fcf75518e8d4c317111c9f3e2d7..d01b291ff378b563313f1f675985d0550b574010 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -194,8 +194,8 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+     private static MinecraftServer SERVER; // Paper
+     public static final Logger LOGGER = LogManager.getLogger();
+     private static final float AVERAGE_TICK_TIME_SMOOTHING = 0.8F;
+-    private static final int TICK_STATS_SPAN = 100;
+-    public static final int MS_PER_TICK = 50;
++    private static int TICK_STATS_SPAN = 100;
++    public static int MS_PER_TICK = 50;
+     public static final float GAMESPEED = 1.0f; // For later
+     private static final int SNOOPER_UPDATE_INTERVAL = 6000;
+     private static final int OVERLOADED_THRESHOLD = 2000;
